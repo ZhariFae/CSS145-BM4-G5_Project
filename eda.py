@@ -7,6 +7,8 @@ from PIL import Image
 def display_eda():
     st.header("Exploratory Data Analysis (EDA)")
 
+    # ------------------------------ LIBRARY AND DATASET IMPORTS ------------------------------
+
     st.subheader("Library and Dataset Imports")
     st.markdown(
         "We import necessary libraries, download the dataset from Kaggle, and perform an initial load.")
@@ -55,6 +57,8 @@ def display_eda():
 
                 df_initial = pd.read_csv(file_path)
                 """, language="python")
+        
+    # ------------------------------ DATASET ANALYSIS ------------------------------
 
     st.subheader("Dataset Analysis")
     st.markdown(
@@ -86,6 +90,8 @@ def display_eda():
         st.text("Dataset Information:")
         st.text(info_str)
 
+    # ------------------------------ DATASET CLEANING ------------------------------
+
     st.subheader("Dataset Cleaning")
     st.markdown(
         "In the dataset cleaning process, we removed the `User Behavior Class` feature due to its vague definition and lack of clarity, as it was not adequately explained in the dataset documentation. Excluding this column helps maintain a clear and interpretable dataset for analysis, focusing on well-defined, measurable features.")
@@ -101,6 +107,30 @@ def display_eda():
                 # Dataset Inspect
                 print("Dataset Information:")
                 print(df.info()) """, language="python")
+
+        df = pd.read_csv(
+            "/workspaces/CSS145-BM4-G5_Project/assets/user_behavior_dataset.csv")
+
+        # Remove 'User Behavior Class' column
+        df_cleaned = df.drop(columns=['User Behavior Class'])
+
+        # Check and remove duplicates
+        duplicates_count = df_cleaned.duplicated().sum()
+        df_cleaned = df_cleaned.drop_duplicates()
+
+        # Show duplicate count
+        st.write(f"**Number of duplicate rows found and removed:** {duplicates_count}")
+
+        # Display cleaned dataset information
+        buffer = st.empty()
+        buffer.text("Cleaned Dataset Information:")
+        buffer.text(df_cleaned.info())
+
+        # Display cleaned dataset head
+        st.write("**Cleaned Dataset Preview:**")
+        st.dataframe(df_cleaned.head())
+
+    # ------------------------------ OUTLIER DETECTION ------------------------------
 
     st.subheader("Outlier Detection")
     st.markdown(
@@ -191,6 +221,8 @@ def display_eda():
         st.markdown("""
                     Using the **Interquartile Range (IQR) method**, no outliers were quantitatively detected for any of the continuous numeric columns. This suggests that the data distribution is relatively well-contained within 1.5 times the IQR from the lower and upper quartiles, or the potential outliers seen in the boxplots might not be extreme enough to surpass the threshold.
                     """)
+
+    # ------------------------------ SUMMARY STATISTICS ------------------------------
         
     st.subheader("Summary Statistics")
     st.markdown(
