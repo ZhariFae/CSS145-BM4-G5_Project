@@ -231,6 +231,8 @@ def display_ml_implementation():
     
     # ------------------------------ ANALYSIS ------------------------------
 
+    with st.expander("😸 Analysis: Decision Tree"):
+
         image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image10.png"
         try:
             image = Image.open(image_path)
@@ -238,8 +240,6 @@ def display_ml_implementation():
         except FileNotFoundError:
             st.write(
                 "Image file not found. Make sure 'image10.png' is in the correct path.")
-
-    with st.expander("😸 Analysis: Decision Tree"):
 
         st.markdown("""
                     1. `Graph Interpretation`
