@@ -1,42 +1,64 @@
 import streamlit as st
+import pandas as pd
 
 def display_dataset_information():
-    st.header("General Information")
-    
-    # Group Information
+    # Page Title
+    st.title("General Information")
+
+    # Group Information Section
     st.subheader("CSS145-BM4 Group 5")
-    st.write("GATMAITAN, Gilbert Jan")
-    st.write("PALMA, Gian Carlo")
-    st.write("REYES, Jedidiah")
-    st.write("VILLAFRANCA, Johan Takkis")
-    st.write("VIOLENTA, Erielson Emmanuel")
+    st.markdown("""
+    - **GATMAITAN, Gilbert Jan**
+    - **PALMA, Gian Carlo**
+    - **REYES, Jedidiah**
+    - **VILLAFRANCA, Johan Takkis**
+    - **VIOLENTA, Erielson Emmanuel**
+    """)
 
-    # Dataset Information
+    # Dataset Overview Section
+    st.header("Dataset Overview")
     st.subheader("Dataset Information")
-    st.write("The dataset used for this project can be found here:")
-    st.page_link("https://www.kaggle.com/datasets/valakhorasani/mobile-device-usage-and-user-behavior-dataset", label="Mobile Device Usage and User Behavior Dataset", icon=None, help=None, disabled=False, use_container_width=None)
+    st.markdown("""
+    This project uses a dataset that analyzes **mobile device usage** and **user behavior**. 
+    Access the dataset on Kaggle:
+    [Mobile Device Usage and User Behavior Dataset](https://www.kaggle.com/datasets/valakhorasani/mobile-device-usage-and-user-behavior-dataset)
+    """)
 
+    # Dataset Description
     st.subheader("Dataset Description")
-    st.write("This dataset comprehensively analyzes trends in mobile device usage and user behavior classification. It includes 700 user data samples encompassing metrics like data consumption, battery drain, screen-on time, and app usage duration. Each input is categorized into one of five user behavior groups, ranging from mild to excessive usage, to enable meaningful analysis and modeling.")
+    st.markdown("""
+    The dataset comprehensively analyzes trends in mobile device usage and user behavior classification.
+    - **700 user samples**
+    - Metrics include: data consumption, battery drain, screen-on time, and app usage duration
+    - Users are categorized into **five user behavior groups** to analyze and model behavior, ranging from mild to excessive usage.
+    """)
 
-    st.subheader("Column Description")
-    st.write("User ID")
-    st.write("A unique identifier is assigned to each user, used to distinguish individual records without revealing personal information.")
-    st.write("Device Model")
-    st.write("The specific model of the mobile device, which can influence app performance and user behavior.")
-    st.write("Operating System")
-    st.write("The operating system of the device (e.g., Android, iOS), which could impact app availability and user experience.")
-    st.write("App Usage Time (min/day)")
-    st.write("The average daily time in minutes that the user spends on apps, reflects engagement and usage levels.")
-    st.write("Screen On Time (hours/day)")
-    st.write("Total daily screen-on time in hours, providing a broader measure of device usage beyond app activity.")
-    st.write("Battery Drain (mAh/day)")
-    st.write("Average daily battery consumption in milliampere-hours (mAh), giving insight into device power usage based on activity.")
-    st.write("Number of Apps Installed")
-    st.write("The total number of apps installed on the device may indicate the user’s app variety and engagement.")
-    st.write("Data Usage (MB/day)")
-    st.write("Daily data usage in megabytes, showing the extent of online activity and content consumption.")
-    st.write("User ID:")
-    st.write("User ID:")
-    st.write("User ID:")
-    st.write("User ID:")
+    # Column Descriptions in a Table
+    st.header("Column Descriptions")
+    column_info = {
+        "Column": [
+            "User ID", "Device Model", "Operating System", "App Usage Time (min/day)",
+            "Screen On Time (hours/day)", "Battery Drain (mAh/day)", "Number of Apps Installed",
+            "Data Usage (MB/day)", "Age", "Gender", "User Behavior Class"
+        ],
+        "Description": [
+            "A unique identifier for each user, ensuring user privacy.",
+            "The specific model of the mobile device, affecting app performance and user behavior.",
+            "The device's operating system (e.g., Android, iOS), influencing app availability and user experience.",
+            "Average daily time spent on apps, reflecting engagement levels.",
+            "Total daily screen-on time in hours, offering a broader measure of device usage.",
+            "Daily battery consumption in milliampere-hours, indicating power usage.",
+            "Total apps installed, hinting at user engagement variety.",
+            "Daily data usage in MB, showing online activity extent.",
+            "User's age, providing demographic insights affecting mobile usage.",
+            "User's gender, enabling demographic-based analysis.",
+            "Categorical classification of user behavior based on engagement."
+        ]
+    }
+
+    # Convert the dictionary to a DataFrame and display it as a table
+    column_df = pd.DataFrame(column_info)
+    st.table(column_df)
+
+# Call the display function
+display_dataset_information()
