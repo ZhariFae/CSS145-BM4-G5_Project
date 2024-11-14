@@ -1,9 +1,15 @@
 import streamlit as st
+import pandas as pd
+import io
 
 def display_eda():
     st.header("Exploratory Data Analysis (EDA)")
 
-    with st.expander("📜 View Code"):
+    st.subheader("Library and Dataset Imports")
+    st.markdown(
+        "We import necessary libraries, download the dataset from Kaggle, and perform an initial load.")
+
+    with st.expander("🐈 Code for Library and Dataset Imports"):
         st.code("""
                 # Library Imports
                 import pandas as pd
@@ -30,21 +36,12 @@ def display_eda():
                 df_initial = pd.read_csv(file_path)
                 df = df_initial.copy()
                         """, language="python")
+        
+    st.subheader("🐈 Dataset Analysis")
+    st.markdown(
+        "we conducted an initial exploration of the dataset to understand its structure, key attributes, and any potential data quality issues.")
 
-    # Placeholder for displaying initial dataset information
-    st.subheader("Initial Dataset Preview")
-    st.write("Here is a preview of the first five rows of the dataset.")
-    st.write(df.head())
-
-    # Dataset Information and Summary Statistics
-    st.subheader("Dataset Structure")
-    st.markdown("""
-    - **Data Types**: Shows the type of data in each column.
-    - **Summary Statistics**: Provides a quick view of mean, median, min, max values.
-    """)
-    st.write("Placeholder for dataset info and summary stats")
-
-    with st.expander("📜 View Code"):
+    with st.expander("📜 Code for Dataset Analysis"):
         st.code("""
 print(df.info())
 print(df.describe(include='all'))
