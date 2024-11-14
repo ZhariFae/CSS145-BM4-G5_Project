@@ -76,7 +76,7 @@ def display_eda():
                 print("Dataset Information:")
                 print(df.info()) """, language="python")
         
-        file_path = "/workspaces/CSS145-BM4-G5_Project/assets/user_behavior_dataset.csv"
+        file_path = "assets/user_behavior_dataset.csv"
         df = pd.read_csv(file_path)
         st.write(df.head())
 
@@ -109,7 +109,7 @@ def display_eda():
                 print(df.info()) """, language="python")
 
         df = pd.read_csv(
-            "/workspaces/CSS145-BM4-G5_Project/assets/user_behavior_dataset.csv")
+            "assets/user_behavior_dataset.csv")
 
         # Remove 'User Behavior Class' column
         df_cleaned = df.drop(columns=['User Behavior Class'])
@@ -163,7 +163,7 @@ def display_eda():
                 plt.show()
                 """, language="python")
         
-        image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image01.png"
+        image_path = "assets/image01.png"
         try:
             image = Image.open(image_path)
             st.image(image, caption="Boxplots of each numerical values for outlier detection.", use_container_width=True)
@@ -267,7 +267,7 @@ def display_eda():
                 plt.show()
                 """, language="python")
         
-        image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image02.png"
+        image_path = "assets/image02.png"
         try:
             image = Image.open(image_path)
             st.image(image, caption="Histogram of each numerical values to determine the distribution.",
@@ -319,7 +319,7 @@ def display_eda():
                 plt.show()
                 """, language="python")
 
-        image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image03.png"
+        image_path = "assets/image03.png"
         try:
             image = Image.open(image_path)
             st.image(image, caption="Bar graphs of each categorical values to determine the distribution.",
@@ -368,7 +368,7 @@ def display_eda():
                 plt.show()
                 """, language="python")
         
-        image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image04.png"
+        image_path = "assets/image04.png"
         try:
             image = Image.open(image_path)
             st.image(image, caption="Scatter plot to determine the representation.",
@@ -408,7 +408,7 @@ def display_eda():
                 plt.show()
                 """, language="python")
         
-        image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image05.png"
+        image_path = "assets/image05.png"
         try:
             image = Image.open(image_path)
             st.image(image, caption="Boxplot of each Gender and OS to determine the representations.",
@@ -444,7 +444,7 @@ def display_eda():
                 plt.show()
                 """, language="python")
 
-        image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image06.png"
+        image_path = "assets/image06.png"
         try:
             image = Image.open(image_path)
             st.image(image, caption="Heatmap of each column to determine the correlation.",

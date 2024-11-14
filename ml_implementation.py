@@ -101,7 +101,7 @@ def display_ml_implementation():
                 plt.show()
                 """, language="python")
         
-        image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image07.png"
+        image_path = "assets/image07.png"
         try:
             image = Image.open(image_path)
             st.image(image, use_container_width=True)
@@ -196,7 +196,7 @@ def display_ml_implementation():
                 plt.ylabel('PCA Component 2')
                 """, language="python")
 
-        image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image08.png"
+        image_path = "assets/image08.png"
         try:
             image = Image.open(image_path)
             st.image(image, use_container_width=True)
@@ -245,7 +245,7 @@ def display_ml_implementation():
                 plt.ylabel('Battery Drain (mAh/day)')
                 """, language="python")
         
-        image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image09.png"
+        image_path = "assets/image09.png"
         try:
             image = Image.open(image_path)
             st.image(image, use_container_width=True)
