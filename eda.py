@@ -121,10 +121,13 @@ def display_eda():
         # Show duplicate count
         st.write(f"**Number of duplicate rows found and removed:** {duplicates_count}")
 
+        buffer = io.StringIO()
+        df_cleaned.info(buf=buffer)
+        info_str = buffer.getvalue()
+
         # Display cleaned dataset information
-        buffer = st.empty()
-        buffer.text("Cleaned Dataset Information:")
-        buffer.text(df_cleaned.info())
+        st.text("Cleaned Dataset Information:")
+        st.text(info_str)
 
         # Display cleaned dataset head
         st.write("**Cleaned Dataset Preview:**")
