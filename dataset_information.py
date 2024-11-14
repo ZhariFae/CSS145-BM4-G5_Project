@@ -21,6 +21,22 @@ def display_dataset_information():
     [Mobile Device Usage and User Behavior Dataset](https://www.kaggle.com/datasets/valakhorasani/mobile-device-usage-and-user-behavior-dataset)
     """)
 
+    column_df = pd.DataFrame(column_info)
+    st.table(column_df)
+
+    try:
+        df = pd.read_csv(
+            '/workspaces/CSS145-BM4-G5_Project/assets/user_behavior_dataset.csv')
+
+        st.subheader("Preview of the Dataset")
+        st.text(
+            "This contains the preview of the dataset used, you can also download the whole file.")
+        st.dataframe(df.head(15))
+
+    except FileNotFoundError:
+        st.error(
+            f"Dataset file not found at {'/workspaces/CSS145-BM4-G5_Project/assets/user_behavior_dataset.csv'}. Please check the file path.")
+
     # Dataset Description
     st.subheader("Dataset Description")
     st.markdown("""
@@ -52,15 +68,3 @@ def display_dataset_information():
 
     column_df = pd.DataFrame(column_info)
     st.table(column_df)
-
-    try:
-        df = pd.read_csv(
-            '/workspaces/CSS145-BM4-G5_Project/assets/user_behavior_dataset.csv')
-
-        st.subheader("Preview of the Dataset")
-        st.text("This contains the preview of the dataset used, you can also download the whole file.")
-        st.dataframe(df.head(15)) 
-
-    except FileNotFoundError:
-        st.error(
-            f"Dataset file not found at {'/workspaces/CSS145-BM4-G5_Project/assets/user_behavior_dataset.csv'}. Please check the file path.")

@@ -137,7 +137,7 @@ def display_eda():
 
     st.subheader("Outlier Detection")
     st.markdown(
-        "We used statistical methods and visualizations (such as box plots and scatter plots) to detect potential outliers in our numerical features.")
+        "We used statistical methods and visualizations (box plots) to detect potential outliers in our numerical features.")
 
     with st.expander("🐈 Code for Outlier Detection: Boxplots"):
         st.code("""
@@ -246,68 +246,83 @@ def display_eda():
                 summary_statistics
                 """, language="python")
 
+    # ------------------------------ DISTRIBUTION ANALYSIS ------------------------------
 
+    st.subheader("Distribution Analysis")
+    st.markdown(
+        "We examine the distribution of key numerical features within the dataset. By visualizing and analyzing the distribution, we gain insights into the central tendency, spread, and skewness of the data.")
     
-        # # Display Summary Statistics
-        # st.subheader("Summary Statistics")
-        # st.write(df.describe(include='all'))
+    with st.expander("🐈 Code for Distribution Analysis: Bar Graph"):
+        st.code("""
+                plt.figure(figsize=(18, 12))
+
+                for i, col in enumerate(numeric_columns, 1):
+                    plt.subplot(3, 2, i)
+                    sns.histplot(df[col], kde=True, color='royalblue', bins=30)
+                    plt.title(f'Distribution of {col}', fontsize=14)
+                    plt.xlabel(col)
+                    plt.ylabel('Frequency')
+
+                plt.tight_layout(pad=3)
+                plt.show()
+                """, language="python")
         
-
+        image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image02.png"
+        try:
+            image = Image.open(image_path)
+            st.image(image, caption="Bar graphs of each numerical values to determine the distribution.",
+                     use_container_width=True)
+        except FileNotFoundError:
+            st.write(
+                "Image file not found. Make sure 'image02.png' is in the correct path.")
         
+    with st.expander("😸 Analysis: Bar Graphs"):
+        st.markdown("""
+                    1. `App Usage Time (min/day)`
+                        - The distribution is roughly right-skewed, indicating that while most users have moderate daily app usage, a smaller subset exhibits much higher usage times.
+                        - The density plot highlights a peak in the lower usage range, suggesting that the majority of users engage in relatively short sessions.
+                    
+                    2. `Screen On Time (hours/day)`
+                        - This feature shows a somewhat right-skewed distribution, where most users have moderate screen-on times.
+                        - The tail towards higher values suggests that some users spend significantly more time on their devices, reflecting varying usage patterns across the dataset.
 
-    # # Data Cleaning
+                    3. `Battery Drain (mAh/day)`
+                        - The distribution of `battery drain` is relatively normal, with most users experiencing average battery consumption.
+                        - Fewer users exhibit extreme values, suggesting that most individuals fall within a typical battery usage range, while a small minority have either very high or low drain rates.
 
-    # dataCleanCode = ```# 'User Behavior Class' Removal
-    #     df_cleaned = df.drop(columns=['User Behavior Class'])
+                    4. `Number of Apps Installed`
+                        - The distribution of the number of apps installed is heavily right-skewed, indicating that most users have a moderate number of apps.
+                        - A smaller group of "power users" stands out with a significantly higher number of installed apps, contributing to the skew.
+                    
+                    5. `Data Usage (MB/day)`
+                        - This feature is also right-skewed, indicating that while most users have average or moderate data consumption, some users exhibit much higher data usage.
+                        - This pattern aligns with common data consumption habits, where a small group of users may engage in high-bandwidth activities.
 
-    #     # Check Duplicates
-    #     duplicates_count = df_cleaned.duplicated().sum()
-    #     print(f"\nNumber of duplicate rows found: {duplicates_count}")
-    
-    #     # Remove Duplicates
-    #     df_cleaned = df_cleaned.drop_duplicates()
+                    6. `Age`
+                        - The age distribution shows a peak in the younger demographic, with a noticeable decrease as age increases.
+                        - This suggests that younger individuals are more likely to use mobile devices, which aligns with trends observed in mobile technology adoption among different age groups.
+                    """)
+    with st.expander("🐈 Code for Distribution Analysis: Bar Graph"):
+        st.code("""
+                plt.figure(figsize=(18, 12))
 
-    #     # Display the cleaned dataset
-    #     print("\nCleaned Dataset Information:")
-    #     df_cleaned.info()
-    #     print("\nCleaned Dataset Head:")
-    #     print(df_cleaned.head())```
+                for i, col in enumerate(numeric_columns, 1):
+                    plt.subplot(3, 2, i)
+                    sns.histplot(df[col], kde=True, color='royalblue', bins=30)
+                    plt.title(f'Distribution of {col}', fontsize=14)
+                    plt.xlabel(col)
+                    plt.ylabel('Frequency')
 
-    # st.subheader("Data Cleaning")
-    # st.write("This step involves removing unnecessary columns, handling duplicates, and checking for missing data.")
-    # st.code(dataCleanCode, language="python")
+                plt.tight_layout(pad=3)
+                plt.show()
+                """, language="python")
 
-    # # Outlier Detection
+        image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image02.png"
+        try:
+            image = Image.open(image_path)
+            st.image(image, caption="Bar graphs of each numerical values to determine the distribution.",
+                     use_container_width=True)
+        except FileNotFoundError:
+            st.write(
+                "Image file not found. Make sure 'image02.png' is in the correct path.")
 
-    # outlierDetection = ```numeric_columns = ['App Usage Time (min/day)', 'Screen On Time (hours/day)',
-    #                'Battery Drain (mAh/day)', 'Number of Apps Installed',
-    #                'Data Usage (MB/day)', 'Age']
-
-    # sns.set_theme(style="whitegrid")
-
-    # plt.figure(figsize=(18, 10))
-    # for i, col in enumerate(numeric_columns, 1):
-    #     plt.subplot(2, 3, i)
-    #     sns.boxplot(
-    #         data=df,
-    #         x=col,
-    #         color='lightblue',
-    #         flierprops={'markerfacecolor': 'r', 'marker': 'o'}
-    #     )
-    #     plt.title(f'Boxplot of {col}', fontsize=14)
-    #     plt.xlabel('')
-
-    # plt.tight_layout()
-    # plt.show()
-    
-    
-    # ```
-    # st.subheader("Outlier Detection")
-    # st.write("We check for outliers in numeric columns using box plots and the IQR method.")
-    # st.image("path/to/outlier_boxplots.png", caption="Boxplots of Numeric Columns", use_column_width=True)
-    # st.code(outlierDetection, language="python")
-
-    # # Additional EDA sections such as Summary Statistics, Distribution Analysis, etc.
-    # st.subheader("Distribution Analysis")
-    # st.write("Description and analysis of distribution patterns for each feature.")
-    # st.image("path/to/distribution_plots.png", caption="Distribution Plots", use_column_width=True)
