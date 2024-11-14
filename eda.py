@@ -2,15 +2,31 @@ import streamlit as st
 
 def display_eda():
     st.header("Exploratory Data Analysis (EDA)")
+
+
+
     
     # Data Cleaning
+
+    dataCleanCode = ```# 'User Behavior Class' Removal
+        df_cleaned = df.drop(columns=['User Behavior Class'])
+
+        # Check Duplicates
+        duplicates_count = df_cleaned.duplicated().sum()
+        print(f"\nNumber of duplicate rows found: {duplicates_count}")
+    
+        # Remove Duplicates
+        df_cleaned = df_cleaned.drop_duplicates()
+
+        # Display the cleaned dataset
+        print("\nCleaned Dataset Information:")
+        df_cleaned.info()
+        print("\nCleaned Dataset Head:")
+        print(df_cleaned.head())```
+
     st.subheader("Data Cleaning")
     st.write("This step involves removing unnecessary columns, handling duplicates, and checking for missing data.")
-    st.code("""
-    # 'User Behavior Class' Removal
-    df_cleaned = df.drop(columns=['User Behavior Class'])
-    ...
-    """, language="python")
+    st.code(dataCleanCode, language="python")
 
     # Outlier Detection
     st.subheader("Outlier Detection")
