@@ -21,6 +21,14 @@ def display_dataset_information():
     [Mobile Device Usage and User Behavior Dataset](https://www.kaggle.com/datasets/valakhorasani/mobile-device-usage-and-user-behavior-dataset)
     """)
 
+    column_info = {
+        "Column": [
+            "User ID", "Device Model", "Operating System", "App Usage Time (min/day)",
+            "Screen On Time (hours/day)", "Battery Drain (mAh/day)", "Number of Apps Installed",
+            "Data Usage (MB/day)", "Age", "Gender", "User Behavior Class"
+        ]
+    }
+
     column_df = pd.DataFrame(column_info)
     st.table(column_df)
 
