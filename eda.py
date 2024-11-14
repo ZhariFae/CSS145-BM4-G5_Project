@@ -341,3 +341,88 @@ def display_eda():
                     """)
         
     # ------------------------------ GRAPHICAL REPRESENTATIONS ------------------------------
+
+    st.subheader("Graphical Representations")
+    st.markdown(
+        "We will present visual representations of the dataset to explore and understand key patterns, trends, and relationships between variables.")
+    
+    with st.expander("🐈 Code for Graphical Representations: Scatter Plot"):
+        st.code("""
+                plt.figure(figsize=(18, 6))
+
+                # Scatter plot: Screen On Time and Battery Drain
+                plt.subplot(1, 2, 1)
+                sns.scatterplot(data=df, x='Screen On Time (hours/day)', y='Battery Drain (mAh/day)', hue='Gender', palette='Set2')
+                plt.title('Screen On Time vs Battery Drain')
+                plt.xlabel('Screen On Time (hours/day)')
+                plt.ylabel('Battery Drain (mAh/day)')
+
+                # Scatter plot: Screen On Time and App Usage Time
+                plt.subplot(1, 2, 2)
+                sns.scatterplot(data=df, x='Screen On Time (hours/day)', y='App Usage Time (min/day)', hue='Operating System', palette='Set1')
+                plt.title('Screen On Time vs App Usage Time')
+                plt.xlabel('Screen On Time (hours/day)')
+                plt.ylabel('App Usage Time (min/day)')
+
+                plt.tight_layout(pad=3)
+                plt.show()
+                """, language="python")
+        
+        image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image04.png"
+        try:
+            image = Image.open(image_path)
+            st.image(image, caption="Bar graphs of each numerical values to determine the distribution.",
+                     use_container_width=True)
+        except FileNotFoundError:
+            st.write(
+                "Image file not found. Make sure 'image04.png' is in the correct path.")
+
+    with st.expander("😸 Analysis: Scatter Plot"):
+        st.markdown("""
+                    1. `Screen On Time vs. Battery Drain`
+                        - Shows a positive trend between screen on time and battery drain. As screen-on time increases, battery drain generally increases, which aligns with expectations since longer screen usage typically requires more power. Different points are colored by gender, which helps visualize whether gender-specific patterns emerge.
+                    
+                    2. `Screen On Time vs. App Usage Time`
+                        - Positive correlation between screen-on time and app usage can be seen. Users with longer screen-on times tend to use apps more frequently or for longer durations Different colors represent different operating systems.
+                    """)
+        
+    with st.expander("🐈 Code for Graphical Representations: Box Plot"):
+        st.code("""
+                plt.figure(figsize=(15, 6))
+
+                # Box plot segmented by Gender
+                plt.subplot(1, 2, 1)
+                sns.boxplot(data=df, x='Gender', y='Age', palette='pastel')
+                plt.title('Age Distribution by Gender')
+                plt.xlabel('Gender')
+                plt.ylabel('Age')
+
+                # Box plot segmented by Operating System
+                plt.subplot(1, 2, 2)
+                sns.boxplot(data=df, x='Operating System', y='Age', palette='muted')
+                plt.title('Age Distribution by Operating System')
+                plt.xlabel('Operating System')
+                plt.ylabel('Age')
+
+                plt.tight_layout(pad=3)
+                plt.show()
+                """, language="python")
+        
+        image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image05.png"
+        try:
+            image = Image.open(image_path)
+            st.image(image, caption="Bar graphs of each numerical values to determine the distribution.",
+                     use_container_width=True)
+        except FileNotFoundError:
+            st.write(
+                "Image file not found. Make sure 'image05.png' is in the correct path.")
+
+    with st.expander("😸 Analysis: Scatter Plot"):
+        st.markdown("""
+                    1. `Age Distribution by Gender`
+                        - This plot compares the distribution of ages between different genders. Key metrics such as the median age, the range (interquartile range, or IQR), and potential outliers are shown for each gender.
+                    
+                    2. `Age Distribution by Operating System`
+                        - This box plot visualizes how age distribution varies for different operating systems. It highlights any differences in the median, spread, and outlier presence of age among users of different OS platforms.
+                    """)
+    
