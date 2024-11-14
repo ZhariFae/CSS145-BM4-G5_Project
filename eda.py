@@ -64,16 +64,16 @@ def display_eda():
                 print(df.describe(include='all'))
                 """, language="python")
         buffer = io.StringIO()
-        df.info(buf=buffer)  # Capture the output of df.info()
-        info_str = buffer.getvalue()  # Get the content as a string
-        st.text("Dataset Information:")  # Title for the section
-        st.text(info_str)  # Display df.info() output in Streamlit
+        df.info(buf=buffer)
+        info_str = buffer.getvalue()
+        st.text("Dataset Information:")
+        st.text(info_str)
 
     st.subheader("Outlier Detection")
     st.markdown(
         "We used statistical methods and visualizations (such as box plots and scatter plots) to detect potential outliers in our numerical features.")
 
-    with st.expander("🐈 Code for Outlier Detection"):
+    with st.expander("🐈 Code for Outlier Detection: Boxplots"):
         st.code("""
                 numeric_columns = ['App Usage Time (min/day)', 'Screen On Time (hours/day)',
                    'Battery Drain (mAh/day)', 'Number of Apps Installed',
@@ -96,12 +96,62 @@ def display_eda():
                 plt.tight_layout()
                 plt.show()
                 """, language="python")
-    image_path = "my_plot.png"  # Path to your actual image
-    try:
-        image = Image.open(image_path)  # Load the image
-        st.image(image, caption="Here is the actual image", use_column_width=True)
-    except FileNotFoundError:
-        st.write("Image file not found. Make sure 'my_plot.png' is in the correct path.")
+        
+        image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image01.png"
+        try:
+            image = Image.open(image_path)
+            st.image(image, caption="Boxplots of each numerical values.", use_container_width=True)
+        except FileNotFoundError:
+            st.write("Image file not found. Make sure 'image01.png' is in the correct path.")
+
+    with st.expander("🐈 Analysis for Boxplots"):
+        st.markdown("""
+                    The boxplots show potential outliers in several of the numeric columns. Specifically, you can observe:
+
+                    1. `App Usage Time (min/day)` and `Screen On Time (hours/day)`
+                        - Columns show some data points extending significantly above their median values, suggesting high usage outliers.
+                    
+                    2. `Battery Drain (mAh/day)` and `Data Usage (MB/day)`
+                        - Columns have data points that could indicate unusually high device usage.
+
+                    3. `Number of Apps Installed`
+                        - Column displays a few cases with high app counts, possibly indicating heavy users.
+
+                    4. `Age`
+                        - Column has a few outlier points but appears relatively well-distributed within its range.
+                    """)
+    
+    with st.expander("🐈 Code for Outlier Detection: IQR Method"):
+        st.code("""
+                outliers_detected = {}
+
+                for col in numeric_columns:
+                    Q1 = df[col].quantile(0.25)
+                    Q3 = df[col].quantile(0.75)
+                    IQR = Q3 - Q1
+                    lower_bound = Q1 - 1.5 * IQR
+                    upper_bound = Q3 + 1.5 * IQR
+
+                    outliers = df[(df[col] < lower_bound) | (df[col] > upper_bound)]
+                    outliers_detected[col] = {
+                        "Lower Bound": lower_bound,
+                        "Upper Bound": upper_bound,
+                        "Outliers Count": len(outliers)
+                    }
+
+                outliers_detected
+                """, language="python")
+        outlier_info = {
+            'App Usage Time (min/day)': {'Lower Bound': -368.25, 'Upper Bound': 915.75, 'Outliers Count': 0},
+            'Screen On Time (hours/day)': {'Lower Bound': -4.85, 'Upper Bound': 14.75, 'Outliers Count': 0},
+            'Battery Drain (mAh/day)': {'Lower Bound': -1538.625, 'Upper Bound': 4490.375, 'Outliers Count': 0},
+            'Number of Apps Installed': {'Lower Bound': -46.0, 'Upper Bound': 146.0, 'Outliers Count': 0},
+            'Data Usage (MB/day)': {'Lower Bound': -1079.0, 'Upper Bound': 2793.0, 'Outliers Count': 0},
+            'Age': {'Lower Bound': -3.5, 'Upper Bound': 80.5, 'Outliers Count': 0}
+        }
+
+        outlier_df = pd.DataFrame(outlier_info).T
+        st.table(outlier_df)
 
         # # Display Summary Statistics
         # st.subheader("Summary Statistics")
