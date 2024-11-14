@@ -28,7 +28,7 @@ def display_dataset_information():
     """)
 
     # Column Descriptions in a Table
-    st.header("Column Descriptions")
+    st.subheader("Column Descriptions")
     column_info = {
         "Column": [
             "User ID", "Device Model", "Operating System", "App Usage Time (min/day)",
