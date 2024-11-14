@@ -130,33 +130,33 @@ def display_ml_implementation():
 
     with st.expander("🐈 Code for Decision Tree Classifier"):
         st.code("""
-                low_threshold_app_usage = df['App Usage Time (min/day)'].quantile(0.33)
-                medium_threshold_app_usage = df['App Usage Time (min/day)'].quantile(0.66)
+                    low_threshold_app_usage = df['App Usage Time (min/day)'].quantile(0.33)
+                    medium_threshold_app_usage = df['App Usage Time (min/day)'].quantile(0.66)
 
-                low_threshold_screen_time = df['Screen On Time (hours/day)'].quantile(0.33)
-                medium_threshold_screen_time = df['Screen On Time (hours/day)'].quantile(0.66)
+                    low_threshold_screen_time = df['Screen On Time (hours/day)'].quantile(0.33)
+                    medium_threshold_screen_time = df['Screen On Time (hours/day)'].quantile(0.66)
 
-                low_threshold_battery_drain = df['Battery Drain (mAh/day)'].quantile(0.33)
-                medium_threshold_battery_drain = df['Battery Drain (mAh/day)'].quantile(0.66)
+                    low_threshold_battery_drain = df['Battery Drain (mAh/day)'].quantile(0.33)
+                    medium_threshold_battery_drain = df['Battery Drain (mAh/day)'].quantile(0.66)
 
-                # Define a function to classify engagement levels
-                def classify_engagement(row):
-                    if (row['App Usage Time (min/day)'] <= low_threshold_app_usage and
-                        row['Screen On Time (hours/day)'] <= low_threshold_screen_time and
-                        row['Battery Drain (mAh/day)'] <= low_threshold_battery_drain):
-                        return 'low'
-                    elif (row['App Usage Time (min/day)'] <= medium_threshold_app_usage and
-                        row['Screen On Time (hours/day)'] <= medium_threshold_screen_time and
-                        row['Battery Drain (mAh/day)'] <= medium_threshold_battery_drain):
-                        return 'medium'
-                    else:
-                        return 'high'
+                    # Define a function to classify engagement levels
+                    def classify_engagement(row):
+                        if (row['App Usage Time (min/day)'] <= low_threshold_app_usage and
+                            row['Screen On Time (hours/day)'] <= low_threshold_screen_time and
+                            row['Battery Drain (mAh/day)'] <= low_threshold_battery_drain):
+                            return 'low'
+                        elif (row['App Usage Time (min/day)'] <= medium_threshold_app_usage and
+                            row['Screen On Time (hours/day)'] <= medium_threshold_screen_time and
+                            row['Battery Drain (mAh/day)'] <= medium_threshold_battery_drain):
+                            return 'medium'
+                        else:
+                            return 'high'
 
-                # Apply the function to create the new column
-                df['Engagement Level'] = df.apply(classify_engagement, axis=1)
+                    # Apply the function to create the new column
+                    df['Engagement Level'] = df.apply(classify_engagement, axis=1)
 
-                # Check the distribution of engagement levels
-                print(df['Engagement Level'].value_counts())
+                    # Check the distribution of engagement levels
+                    print(df['Engagement Level'].value_counts())
                 """, language="python")
 
         engagement_data = {
