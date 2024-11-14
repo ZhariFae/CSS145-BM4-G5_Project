@@ -27,10 +27,7 @@ def display_dataset_information():
     # Dataset Description
     st.subheader("Dataset Description")
     st.markdown("""
-    The dataset comprehensively analyzes trends in mobile device usage and user behavior classification.
-    - **700 user samples**
-    - Metrics include: data consumption, battery drain, screen-on time, and app usage duration
-    - Users are categorized into **five user behavior groups** to analyze and model behavior, ranging from mild to excessive usage.
+    This dataset comprehensively analyzes trends in mobile device usage and userbehavior classification. It includes 700 user data samples encompassing metrics like data consumption, battery drain, screen-on time, and app usage duration. Each input is categorized into one of five user behavior groups, ranging from mild to excessive usage, to enable meaningful analysis and modeling.
     """)
 
     # Column Descriptions in a Table
@@ -56,9 +53,16 @@ def display_dataset_information():
         ]
     }
 
-    # Convert the dictionary to a DataFrame and display it as a table
     column_df = pd.DataFrame(column_info)
     st.table(column_df)
 
-# Call the display function
-display_dataset_information()
+    try:
+        # Read the CSV file from the specified path
+        df = pd.read_csv('/workspaces/CSS145-BM4-G5_Project/user_behavior_dataset.csv')
+
+        st.subheader("Preview of the Dataset")
+        st.text("This contains the preview of the dataset used, you can also download the whole file.")
+        st.dataframe(df.head(15)) 
+
+    except FileNotFoundError:
+        st.error(f"Dataset file not found at {dataset_path}. Please check the file path.")
