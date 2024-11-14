@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 def display_dataset_information():
-    # Page Title
+    st.header("Dataset Overview")
 
     # Group Information Section
     st.subheader("CSS145-BM4 Group 5")
@@ -14,8 +14,6 @@ def display_dataset_information():
     - **VIOLENTA, Erielson Emmanuel**
     """)
 
-    # Dataset Overview Section
-    st.header("Dataset Overview")
     st.subheader("Dataset Information")
     st.markdown("""
     This project uses a dataset that analyzes **mobile device usage** and **user behavior**. 
@@ -56,7 +54,6 @@ def display_dataset_information():
     st.table(column_df)
 
     try:
-        # Read the CSV file from the specified path
         df = pd.read_csv('/workspaces/CSS145-BM4-G5_Project/user_behavior_dataset.csv')
 
         st.subheader("Preview of the Dataset")

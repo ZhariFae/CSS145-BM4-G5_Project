@@ -35,17 +35,27 @@ def display_eda():
                 file_path = os.path.join(path, file_name)
                 df_initial = pd.read_csv(file_path)
                 df = df_initial.copy()
-                        """, language="python")
+                """, language="python")
         
-    st.subheader("🐈 Dataset Analysis")
+    st.subheader("Dataset Analysis")
     st.markdown(
         "we conducted an initial exploration of the dataset to understand its structure, key attributes, and any potential data quality issues.")
 
-    with st.expander("📜 Code for Dataset Analysis"):
+    with st.expander("🐈 Code for Dataset Analysis"):
         st.code("""
-print(df.info())
-print(df.describe(include='all'))
-        """, language="python")
+                # Dataset Read
+                df_initial.head()
+                
+                # Original Copy
+                df = df_initial.copy()
+
+                # Dataset Inspect
+                print("Dataset Information:")
+                print(df.info())
+                print("Summary Statistics:")
+                print(df.describe(include='all'))
+                """, language="python")
+        
 
     # # Data Cleaning
 
