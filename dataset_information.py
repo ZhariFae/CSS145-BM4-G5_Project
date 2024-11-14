@@ -65,6 +65,3 @@ def display_dataset_information():
             "Categorical classification of user behavior based on engagement."
         ]
     }
-
-    column_df = pd.DataFrame(column_info)
-    st.table(column_df)
