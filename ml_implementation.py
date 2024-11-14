@@ -228,3 +228,50 @@ def display_ml_implementation():
         except FileNotFoundError:
             st.write(
                 "Image file not found. Make sure 'image09.png' is in the correct path.")
+    
+    # ------------------------------ ANALYSIS ------------------------------
+
+        image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image10.png"
+        try:
+            image = Image.open(image_path)
+            st.image(image, use_container_width=True)
+        except FileNotFoundError:
+            st.write(
+                "Image file not found. Make sure 'image10.png' is in the correct path.")
+
+    with st.expander("😸 Analysis: Decision Tree"):
+
+        st.markdown("""
+                    1. `Graph Interpretation`
+                        - This bar plot visualizes the importance of each feature in predicting the Operating System (Android or iOS) using the Decision Tree model.
+                    
+                    2. `Key Observations`
+                        - The Device Model_iPhone 12 feature has the highest importance, indicating that this model of phone is strongly associated with one of the operating systems (likely iOS). Other device models, along with Gender_Male and Battery Drain, show minimal importance in comparison.
+
+                    3. `Conclusion`
+                        - The Decision Tree model relies heavily on specific device models to predict the operating system, which aligns with the expectation that certain devices are exclusive to particular operating systems. This insight may be less useful for predicting OS in future data if new devices are introduced, as it depends on specific device information rather than more generalized features.
+                    """)
+
+    with st.expander("😸 Analysis: SVM"):
+        st.markdown("""
+                    1. `Graph Interpretation`
+                        - This scatter plot shows the classification of engagement levels (low, medium, high) based on a Support Vector Machine (SVM) model, plotted in a reduced two-dimensional space using PCA (Principal Component Analysis).
+
+                    2. `Key Observations`
+                        - The three engagement levels appear as clusters with clear separations, indicating that the SVM model was successful in distinguishing between low, medium, and high engagement users based on App Usage Time, Screen On Time, and Battery Drain. Each engagement level forms a distinct cluster, with some overlap between adjacent levels.
+
+                    3. `Conclusion`
+                        - The SVM model is effective in segmenting users into distinct engagement levels. This could be valuable for creating tailored experiences based on engagement patterns, as well as for targeted marketing or user retention strategies. However, the presence of slight overlaps suggests that some users' behaviors fall near the boundaries of engagement categories, which could result in occasional misclassification.
+                    """)
+
+    with st.expander("😸 Analysis: Clustering"):
+        st.markdown("""
+                    1. `Graph Interpretation`
+                        - This scatter plot shows the results of a KMeans clustering analysis on user behavior based on Screen On Time, Battery Drain, and Data Usage. Each color represents a different cluster, corresponding to a specific user profile.
+
+                    2. `Key Observations`
+                        - There are three distinct clusters representing different user profiles: Casual Users: Lower screen time and battery usage, likely indicating infrequent or short-duration app usage. Moderate Users: Moderate screen time and battery usage, suggesting more balanced usage patterns. Power Users: High screen time, battery drain, and data usage, indicating heavy engagement with apps and potentially resource-intensive activities.
+
+                    3. `Conclusion`
+                        - The clustering analysis reveals clear user segments that can inform personalized app features or marketing strategies. For example, power users may appreciate app performance optimizations, while casual users may benefit from simplified interfaces. Recognizing these user profiles can help businesses target user-specific strategies and enhance user experience for different engagement levels.
+                    """)
