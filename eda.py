@@ -39,7 +39,7 @@ def display_eda():
         
     st.subheader("Dataset Analysis")
     st.markdown(
-        "we conducted an initial exploration of the dataset to understand its structure, key attributes, and any potential data quality issues.")
+        "We conducted an initial exploration of the dataset to understand its structure, key attributes, and any potential data quality issues.")
 
     with st.expander("🐈 Code for Dataset Analysis"):
         st.code("""
@@ -51,10 +51,55 @@ def display_eda():
 
                 # Dataset Inspect
                 print("Dataset Information:")
-                print(df.info())
+                print(df.info()) """, language="python")
+        
+        file_path = "/workspaces/CSS145-BM4-G5_Project/user_behavior_dataset.csv"
+        df = pd.read_csv(file_path)
+        st.write(df.head())
+
+        st.code("""
                 print("Summary Statistics:")
                 print(df.describe(include='all'))
                 """, language="python")
+        buffer = io.StringIO()
+        df.info(buf=buffer)  # Capture the output of df.info()
+        info_str = buffer.getvalue()  # Get the content as a string
+        st.text("Dataset Information:")  # Title for the section
+        st.text(info_str)  # Display df.info() output in Streamlit
+
+    st.subheader("Outlier Detection")
+    st.markdown(
+        "We used statistical methods and visualizations (such as box plots and scatter plots) to detect potential outliers in our numerical features.")
+
+    with st.expander("🐈 Code for Outlier Detection"):
+        st.code("""
+                numeric_columns = ['App Usage Time (min/day)', 'Screen On Time (hours/day)',
+                   'Battery Drain (mAh/day)', 'Number of Apps Installed',
+                   'Data Usage (MB/day)', 'Age']
+
+                sns.set_theme(style="whitegrid")
+
+                plt.figure(figsize=(18, 10))
+                for i, col in enumerate(numeric_columns, 1):
+                    plt.subplot(2, 3, i)
+                    sns.boxplot(
+                        data=df,
+                        x=col,
+                        color='lightblue',
+                        flierprops={'markerfacecolor': 'r', 'marker': 'o'}
+                    )
+                    plt.title(f'Boxplot of {col}', fontsize=14)
+                    plt.xlabel('')
+
+                plt.tight_layout()
+                plt.show()
+                """, language="python")
+
+        # # Display Summary Statistics
+        # st.subheader("Summary Statistics")
+        # st.write(df.describe(include='all'))
+        
+
         
 
     # # Data Cleaning
