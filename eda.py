@@ -322,7 +322,7 @@ def display_eda():
         image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image03.png"
         try:
             image = Image.open(image_path)
-            st.image(image, caption="Bar graphs of each numerical values to determine the distribution.",
+            st.image(image, caption="Bar graphs of each categorical values to determine the distribution.",
                      use_container_width=True)
         except FileNotFoundError:
             st.write(
@@ -371,7 +371,7 @@ def display_eda():
         image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image04.png"
         try:
             image = Image.open(image_path)
-            st.image(image, caption="Bar graphs of each numerical values to determine the distribution.",
+            st.image(image, caption="Scatter plot to determine the representation.",
                      use_container_width=True)
         except FileNotFoundError:
             st.write(
@@ -411,13 +411,13 @@ def display_eda():
         image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image05.png"
         try:
             image = Image.open(image_path)
-            st.image(image, caption="Bar graphs of each numerical values to determine the distribution.",
+            st.image(image, caption="Boxplot of each Gender and OS to determine the representations.",
                      use_container_width=True)
         except FileNotFoundError:
             st.write(
                 "Image file not found. Make sure 'image05.png' is in the correct path.")
 
-    with st.expander("😸 Analysis: Scatter Plot"):
+    with st.expander("😸 Analysis: Box Plot"):
         st.markdown("""
                     1. `Age Distribution by Gender`
                         - This plot compares the distribution of ages between different genders. Key metrics such as the median age, the range (interquartile range, or IQR), and potential outliers are shown for each gender.
@@ -447,7 +447,7 @@ def display_eda():
         image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image06.png"
         try:
             image = Image.open(image_path)
-            st.image(image, caption="Bar graphs of each numerical values to determine the distribution.",
+            st.image(image, caption="Heatmap of each column to determine the correlation.",
                      use_container_width=True)
         except FileNotFoundError:
             st.write(
