@@ -425,4 +425,39 @@ def display_eda():
                     2. `Age Distribution by Operating System`
                         - This box plot visualizes how age distribution varies for different operating systems. It highlights any differences in the median, spread, and outlier presence of age among users of different OS platforms.
                     """)
-    
+    # ------------------------------ CORRELATION ANALYSIS ------------------------------
+
+    st.subheader("Correlation Analysis")
+    st.markdown(
+        "We will examine the relationships between the variables in the dataset to identify potential correlations.")
+
+    with st.expander("🐈 Code for Correlation Analysis: Heatmap"):
+        st.code("""
+                df_numeric = df_cleaned[numeric_columns]
+
+                correlation_matrix = df_numeric.corr()
+
+                # Correlation matrix using a heatmap
+                plt.figure(figsize=(12, 8))
+                sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', vmin=-1, vmax=1, square=True)
+                plt.title("Correlation Matrix of Numerical Features")
+                plt.show()
+                """, language="python")
+
+        image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image06.png"
+        try:
+            image = Image.open(image_path)
+            st.image(image, caption="Bar graphs of each numerical values to determine the distribution.",
+                     use_container_width=True)
+        except FileNotFoundError:
+            st.write(
+                "Image file not found. Make sure 'image06.png' is in the correct path.")
+            
+    with st.expander("😸 Analysis: Heatmap"):
+        st.markdown("""
+                    1. `High Correlations`
+                        - There is a strong positive correlation among `App Usage Time`, `Screen On Time`, `Battery Drain`, `Number of Apps Installed`, and `Data Usage`. For example, `App Usage Time` is highly correlated with `Screen On Time` (0.95) and `Battery Drain (0.96)`. This suggests these variables may measure overlapping aspects of user behavior.
+                    
+                    2. `Low Correlation`
+                        - The `Age` feature shows very weak correlations with other variables, indicating it is relatively independent in this dataset.
+                    """)
