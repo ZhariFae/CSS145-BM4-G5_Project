@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import io
 
+from PIL import Image
+
 def display_eda():
     st.header("Exploratory Data Analysis (EDA)")
 
@@ -53,7 +55,7 @@ def display_eda():
                 print("Dataset Information:")
                 print(df.info()) """, language="python")
         
-        file_path = "/workspaces/CSS145-BM4-G5_Project/user_behavior_dataset.csv"
+        file_path = "/workspaces/CSS145-BM4-G5_Project/assets/user_behavior_dataset.csv"
         df = pd.read_csv(file_path)
         st.write(df.head())
 
@@ -94,6 +96,12 @@ def display_eda():
                 plt.tight_layout()
                 plt.show()
                 """, language="python")
+    image_path = "my_plot.png"  # Path to your actual image
+    try:
+        image = Image.open(image_path)  # Load the image
+        st.image(image, caption="Here is the actual image", use_column_width=True)
+    except FileNotFoundError:
+        st.write("Image file not found. Make sure 'my_plot.png' is in the correct path.")
 
         # # Display Summary Statistics
         # st.subheader("Summary Statistics")

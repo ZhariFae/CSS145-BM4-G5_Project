@@ -54,7 +54,8 @@ def display_dataset_information():
     st.table(column_df)
 
     try:
-        df = pd.read_csv('/workspaces/CSS145-BM4-G5_Project/user_behavior_dataset.csv')
+        df = pd.read_csv(
+            '/workspaces/CSS145-BM4-G5_Project/assets/user_behavior_dataset.csv')
 
         st.subheader("Preview of the Dataset")
         st.text("This contains the preview of the dataset used, you can also download the whole file.")
@@ -62,4 +63,4 @@ def display_dataset_information():
 
     except FileNotFoundError:
         st.error(
-            f"Dataset file not found at {'/workspaces/CSS145-BM4-G5_Project/user_behavior_dataset.csv'}. Please check the file path.")
+            f"Dataset file not found at {'/workspaces/CSS145-BM4-G5_Project/assets/user_behavior_dataset.csv'}. Please check the file path.")
