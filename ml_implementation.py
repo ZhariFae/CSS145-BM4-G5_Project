@@ -91,7 +91,7 @@ def display_ml_implementation():
                 print(f"Decision Tree Accuracy: {accuracy * 100:.2f}%")
                 print("Confusion Matrix:")
                 print(confusion_matrix(y_test, y_pred))
-                print("\nClassification Report:")
+                print("Classification Report:")
                 print(classification_report(y_test, y_pred))
 
                 # Visualize the Decision Tree
