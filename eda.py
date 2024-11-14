@@ -3,6 +3,53 @@ import streamlit as st
 def display_eda():
     st.header("Exploratory Data Analysis (EDA)")
 
+    with st.expander("📜 View Code"):
+        st.code("""
+                # Library Imports
+                import pandas as pd
+                import numpy as np
+                import seaborn as sns
+                import matplotlib.pyplot as plt
+
+                from sklearn.model_selection import train_test_split
+                from sklearn.tree import DecisionTreeClassifier
+                from sklearn.svm import SVC
+                from sklearn.cluster import KMeans
+                from sklearn.metrics import classification_report, accuracy_score
+                from sklearn.preprocessing import LabelEncoder, StandardScaler
+                from sklearn.metrics import ConfusionMatrixDisplay
+
+                # Kaggle Download
+                import kagglehub
+                import os
+
+                # Dataset Path and Load
+                path = kagglehub.dataset_download("valakhorasani/mobile-device-usage-and-user-behavior-dataset")
+                file_name = 'user_behavior_dataset.csv'
+                file_path = os.path.join(path, file_name)
+                df_initial = pd.read_csv(file_path)
+                df = df_initial.copy()
+                        """, language="python")
+
+    # Placeholder for displaying initial dataset information
+    st.subheader("Initial Dataset Preview")
+    st.write("Here is a preview of the first five rows of the dataset.")
+    st.write(df.head())
+
+    # Dataset Information and Summary Statistics
+    st.subheader("Dataset Structure")
+    st.markdown("""
+    - **Data Types**: Shows the type of data in each column.
+    - **Summary Statistics**: Provides a quick view of mean, median, min, max values.
+    """)
+    st.write("Placeholder for dataset info and summary stats")
+
+    with st.expander("📜 View Code"):
+        st.code("""
+print(df.info())
+print(df.describe(include='all'))
+        """, language="python")
+
     # # Data Cleaning
 
     # dataCleanCode = ```# 'User Behavior Class' Removal

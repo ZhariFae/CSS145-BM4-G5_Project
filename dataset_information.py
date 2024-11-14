@@ -3,7 +3,6 @@ import pandas as pd
 
 def display_dataset_information():
     # Page Title
-    st.title("General Information")
 
     # Group Information Section
     st.subheader("CSS145-BM4 Group 5")
