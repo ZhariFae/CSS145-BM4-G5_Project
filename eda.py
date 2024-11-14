@@ -31,14 +31,31 @@ def display_eda():
                 import kagglehub
                 import os
 
-                # Dataset Path and Load
+                # Kaggle Dataset Import
                 path = kagglehub.dataset_download("valakhorasani/mobile-device-usage-and-user-behavior-dataset")
-                file_name = 'user_behavior_dataset.csv'
-                file_path = os.path.join(path, file_name)
-                df_initial = pd.read_csv(file_path)
-                df = df_initial.copy()
+                print("Path to dataset files:", path)
                 """, language="python")
         
+        st.markdown("""Warning: Looks like you're using an outdated `kagglehub` version, please consider updating (latest version: 0.3.4)
+                    Path to dataset files: /root/.cache/kagglehub/datasets/valakhorasani/mobile-device-usage-and-user-behavior-dataset/versions/1""")
+        
+        st.code("""
+                # Files in Downloaded Dataset Directory
+                files = os.listdir(path)
+                print("Files in the downloaded dataset directory:", files)
+                """, language="python")
+        
+        st.markdown(
+            """Files in the downloaded dataset directory: ['user_behavior_dataset.csv']""")
+        
+        st.code("""
+                # Load the dataset
+                file_name = 'user_behavior_dataset.csv'
+                file_path = os.path.join(path, file_name)
+
+                df_initial = pd.read_csv(file_path)
+                """, language="python")
+
     st.subheader("Dataset Analysis")
     st.markdown(
         "We conducted an initial exploration of the dataset to understand its structure, key attributes, and any potential data quality issues.")
@@ -68,6 +85,22 @@ def display_eda():
         info_str = buffer.getvalue()
         st.text("Dataset Information:")
         st.text(info_str)
+
+    st.subheader("Dataset Cleaning")
+    st.markdown(
+        "In the dataset cleaning process, we removed the `User Behavior Class` feature due to its vague definition and lack of clarity, as it was not adequately explained in the dataset documentation. Excluding this column helps maintain a clear and interpretable dataset for analysis, focusing on well-defined, measurable features.")
+
+    with st.expander("🐈 Code for Dataset Cleaning"):
+        st.code("""
+                # Dataset Read
+                df_initial.head()
+                
+                # Original Copy
+                df = df_initial.copy()
+
+                # Dataset Inspect
+                print("Dataset Information:")
+                print(df.info()) """, language="python")
 
     st.subheader("Outlier Detection")
     st.markdown(
@@ -104,7 +137,7 @@ def display_eda():
         except FileNotFoundError:
             st.write("Image file not found. Make sure 'image01.png' is in the correct path.")
 
-    with st.expander("🐈 Analysis for Boxplots"):
+    with st.expander("😸 Analysis: Boxplots"):
         st.markdown("""
                     The boxplots show potential outliers in several of the numeric columns. Specifically, you can observe:
 
@@ -141,6 +174,7 @@ def display_eda():
 
                 outliers_detected
                 """, language="python")
+        
         outlier_info = {
             'App Usage Time (min/day)': {'Lower Bound': -368.25, 'Upper Bound': 915.75, 'Outliers Count': 0},
             'Screen On Time (hours/day)': {'Lower Bound': -4.85, 'Upper Bound': 14.75, 'Outliers Count': 0},
@@ -152,7 +186,33 @@ def display_eda():
 
         outlier_df = pd.DataFrame(outlier_info).T
         st.table(outlier_df)
+    
+    with st.expander("😸 Analysis: IQR Method"):
+        st.markdown("""
+                    Using the **Interquartile Range (IQR) method**, no outliers were quantitatively detected for any of the continuous numeric columns. This suggests that the data distribution is relatively well-contained within 1.5 times the IQR from the lower and upper quartiles, or the potential outliers seen in the boxplots might not be extreme enough to surpass the threshold.
+                    """)
+        
+    st.subheader("Summary Statistics")
+    st.markdown(
+        "We provided a quick overview of the dataset’s key numerical metrics, including measures such as the mean, median, standard deviation, minimum, and maximum values for each feature. These summary statistics offer insight into data distribution, central tendencies, and variability, helping to identify trends or anomalies before further analysis.")
+    
+    with st.expander("🐈 Code for Summary Statistics"):
+        st.code("""
+                summary_statistics = {}
 
+                for col in numeric_columns:
+                    summary_statistics[col] = {
+                        "Mean": df[col].mean(),
+                        "Median": df[col].median(),
+                        "Variance": df[col].var(),
+                        "Standard Deviation": df[col].std()
+                    }
+
+                summary_statistics
+                """, language="python")
+
+
+    
         # # Display Summary Statistics
         # st.subheader("Summary Statistics")
         # st.write(df.describe(include='all'))
