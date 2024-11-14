@@ -65,4 +65,5 @@ def display_dataset_information():
         st.dataframe(df.head(15)) 
 
     except FileNotFoundError:
-        st.error(f"Dataset file not found at {dataset_path}. Please check the file path.")
+        st.error(
+            f"Dataset file not found at {'/workspaces/CSS145-BM4-G5_Project/user_behavior_dataset.csv'}. Please check the file path.")
