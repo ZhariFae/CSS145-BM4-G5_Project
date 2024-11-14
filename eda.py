@@ -139,7 +139,7 @@ def display_eda():
     st.markdown(
         "We used statistical methods and visualizations (box plots) to detect potential outliers in our numerical features.")
 
-    with st.expander("🐈 Code for Outlier Detection: Boxplots"):
+    with st.expander("🐈 Code for Outlier Detection: Boxplot"):
         st.code("""
                 numeric_columns = ['App Usage Time (min/day)', 'Screen On Time (hours/day)',
                    'Battery Drain (mAh/day)', 'Number of Apps Installed',
@@ -166,11 +166,11 @@ def display_eda():
         image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image01.png"
         try:
             image = Image.open(image_path)
-            st.image(image, caption="Boxplots of each numerical values.", use_container_width=True)
+            st.image(image, caption="Boxplots of each numerical values for outlier detection.", use_container_width=True)
         except FileNotFoundError:
             st.write("Image file not found. Make sure 'image01.png' is in the correct path.")
 
-    with st.expander("😸 Analysis: Boxplots"):
+    with st.expander("😸 Analysis: Boxplot"):
         st.markdown("""
                     The boxplots show potential outliers in several of the numeric columns. Specifically, you can observe:
 
@@ -252,7 +252,7 @@ def display_eda():
     st.markdown(
         "We examine the distribution of key numerical features within the dataset. By visualizing and analyzing the distribution, we gain insights into the central tendency, spread, and skewness of the data.")
     
-    with st.expander("🐈 Code for Distribution Analysis: Bar Graph"):
+    with st.expander("🐈 Code for Distribution Analysis: Histogram"):
         st.code("""
                 plt.figure(figsize=(18, 12))
 
@@ -270,13 +270,13 @@ def display_eda():
         image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image02.png"
         try:
             image = Image.open(image_path)
-            st.image(image, caption="Bar graphs of each numerical values to determine the distribution.",
+            st.image(image, caption="Histogram of each numerical values to determine the distribution.",
                      use_container_width=True)
         except FileNotFoundError:
             st.write(
                 "Image file not found. Make sure 'image02.png' is in the correct path.")
         
-    with st.expander("😸 Analysis: Bar Graphs"):
+    with st.expander("😸 Analysis: Histogram"):
         st.markdown("""
                     1. `App Usage Time (min/day)`
                         - The distribution is roughly right-skewed, indicating that while most users have moderate daily app usage, a smaller subset exhibits much higher usage times.
@@ -304,25 +304,40 @@ def display_eda():
                     """)
     with st.expander("🐈 Code for Distribution Analysis: Bar Graph"):
         st.code("""
-                plt.figure(figsize=(18, 12))
+                categorical_columns = ['Device Model', 'Operating System', 'Gender']
+                plt.figure(figsize=(18, 8))
 
-                for i, col in enumerate(numeric_columns, 1):
-                    plt.subplot(3, 2, i)
-                    sns.histplot(df[col], kde=True, color='royalblue', bins=30)
-                    plt.title(f'Distribution of {col}', fontsize=14)
+                for i, col in enumerate(categorical_columns, 1):
+                    plt.subplot(1, 3, i)
+                    sns.countplot(data=df, x=col, palette='viridis')
+                    plt.title(f'Count Plot of {col}', fontsize=14)
                     plt.xlabel(col)
-                    plt.ylabel('Frequency')
+                    plt.ylabel('Count')
+                    plt.xticks(rotation=30)
 
                 plt.tight_layout(pad=3)
                 plt.show()
                 """, language="python")
 
-        image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image02.png"
+        image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image03.png"
         try:
             image = Image.open(image_path)
             st.image(image, caption="Bar graphs of each numerical values to determine the distribution.",
                      use_container_width=True)
         except FileNotFoundError:
             st.write(
-                "Image file not found. Make sure 'image02.png' is in the correct path.")
+                "Image file not found. Make sure 'image03.png' is in the correct path.")
+    
+    with st.expander("😸 Analysis: Bar Graph"):
+        st.markdown("""
+                    1. `Device Model`
+                        - The bar plot shows the distribution of device models, with certain models (Xiami Mi 11 and iPhone 12) being more common among users. This indicates popularity, market dominance, or preferences for specific models.
+                    
+                    2. `Operating System`
+                        - The operating system plot reveals the distribution of different OS platforms in use. A dominant OS (Android) have a larger share, highlighting potential user demographics or preferences.
 
+                    3. `Gender`
+                        - The distribution of genders shows the representation of male and female users. The male category is more dominant, it indicates a skew in user demographics, relevant for targeted analysis or marketing.
+                    """)
+        
+    # ------------------------------ GRAPHICAL REPRESENTATIONS ------------------------------
