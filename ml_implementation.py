@@ -204,7 +204,7 @@ def display_ml_implementation():
             st.write(
                 "Image file not found. Make sure 'image08.png' is in the correct path.")
             
-    with st.expander("😸 Analysis: SVM"):
+    with st.expander("😸 Analysis: SVM"):            
         st.markdown("""
                     1. `Graph Interpretation`
                         - This scatter plot shows the classification of engagement levels (low, medium, high) based on a Support Vector Machine (SVM) model, plotted in a reduced two-dimensional space using PCA (Principal Component Analysis).
