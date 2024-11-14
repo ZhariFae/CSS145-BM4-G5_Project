@@ -24,7 +24,7 @@ def display_conclusion():
 
     st.subheader("Machine Learning Implementation")
 
-    image_path = "/workspaces/CSS145-BM4-G5_Project/assets/image10.png"
+    image_path = "assets/image10.png"
     try:
         image = Image.open(image_path)
         st.image(image, use_container_width=True)
