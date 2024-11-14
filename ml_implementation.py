@@ -69,36 +69,36 @@ def display_ml_implementation():
 
     with st.expander("🐈 Code for Decision Tree Classifier"):
         st.code("""
-                    # Prepare the data
-                    X = df_cleaned[['Age', 'Gender', 'Battery Drain (mAh/day)', 'Device Model']]  # Features
-                    y = df_cleaned['Operating System']  # Target variable
+                # Prepare the data
+                X = df_cleaned[['Age', 'Gender', 'Battery Drain (mAh/day)', 'Device Model']]
+                y = df_cleaned['Operating System']  # Target variable
 
-                    # Convert categorical variables to numerical ones
-                    X = pd.get_dummies(X, drop_first=True)
+                # Convert categorical variables to numerical ones
+                X = pd.get_dummies(X, drop_first=True)
 
-                    # Train-Test Split
-                    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+                # Train-Test Split
+                X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-                    # Initialize and train the Decision Tree classifier
-                    dt_model = DecisionTreeClassifier(random_state=42)
-                    dt_model.fit(X_train, y_train)
+                # Initialize and train the Decision Tree classifier
+                dt_model = DecisionTreeClassifier(random_state=42)
+                dt_model.fit(X_train, y_train)
 
-                    # Predictions
-                    y_pred = dt_model.predict(X_test)
+                # Predictions
+                y_pred = dt_model.predict(X_test)
 
-                    # Model evaluation
-                    accuracy = accuracy_score(y_test, y_pred)
-                    print(f"Decision Tree Accuracy: {accuracy * 100:.2f}%")
-                    print("Confusion Matrix:")
-                    print(confusion_matrix(y_test, y_pred))
-                    print("\nClassification Report:")
-                    print(classification_report(y_test, y_pred))
+                # Model evaluation
+                accuracy = accuracy_score(y_test, y_pred)
+                print(f"Decision Tree Accuracy: {accuracy * 100:.2f}%")
+                print("Confusion Matrix:")
+                print(confusion_matrix(y_test, y_pred))
+                print("\nClassification Report:")
+                print(classification_report(y_test, y_pred))
 
-                    # Visualize the Decision Tree
-                    plt.figure(figsize=(12, 8))
-                    plot_tree(dt_model, feature_names=X.columns, class_names=dt_model.classes_, filled=True)
-                    plt.title("Decision Tree Classifier Visualization")
-                    plt.show()
+                # Visualize the Decision Tree
+                plt.figure(figsize=(12, 8))
+                plot_tree(dt_model, feature_names=X.columns, class_names=dt_model.classes_, filled=True)
+                plt.title("Decision Tree Classifier Visualization")
+                plt.show()
                 """, language="python")
         
         image_path = "assets/image07.png"
@@ -128,7 +128,7 @@ def display_ml_implementation():
     st.markdown(
         "SVM is particularly suited for binary or multi-class classification tasks where finding the optimal boundary between classes is critical. Here, SVM can classify users into different engagement levels (low, medium, high) based on features such as App Usage Time, Screen On Time, and Battery Drain.")
 
-    with st.expander("🐈 Code for Decision Tree Classifier"):
+    with st.expander("🐈 Code for SVM"):
         st.code("""
                 low_threshold_app_usage = df['App Usage Time (min/day)'].quantile(0.33)
                 medium_threshold_app_usage = df['App Usage Time (min/day)'].quantile(0.66)
