@@ -14,7 +14,7 @@ st.sidebar.title("Navigation")
 
 # Main sections as dropdowns
 section = st.sidebar.selectbox("Choose a page:", [
-                               "Dataset Information", "Exploratory Data Analysis", "Machine Learning Implementation", "Prediction", "Conclusion"])
+                               "Dataset Information", "Exploratory Data Analysis", "Machine Learning Implementation", "Conclusion"])
 
 # Display content based on selected section
 if section == "Dataset Information":
@@ -23,7 +23,7 @@ elif section == "Exploratory Data Analysis":
     display_eda()
 elif section == "Machine Learning Implementation":
     display_ml_implementation()
-elif section == "Prediction":
-    display_prediction()
+# elif section == "Prediction":
+#     display_prediction()
 elif section == "Conclusion":
     display_conclusion()
