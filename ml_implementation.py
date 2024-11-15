@@ -218,7 +218,7 @@ def display_ml_implementation():
     
     # ------------------------------ CLUSTERING ------------------------------
 
-    st.subheader("Decision Tree Classifier: Classify Operating System")
+    st.subheader("Clustering: KMeans")
     st.markdown(
         "Clustering is used for unsupervised learning, which is ideal for creating user profiles based on similar characteristics. By clustering users based on Screen On Time, Battery Drain, and Data Usage, we can group them into segments like power users and casual users. This segmentation can be useful for tailoring marketing strategies, optimizing app features, and addressing user needs.")
 
