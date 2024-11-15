@@ -6,11 +6,17 @@ from ml_implementation import display_ml_implementation
 from conclusion import display_conclusion
 from prediction import display_prediction
 
-# Streamlit App Configuration
-st.set_page_config(page_title="Mobile Device Usage Analysis", layout="wide")
+st.set_page_config(
+    page_title="Mobile User Behavior Analysis", # Replace this with your Project's Title
+    page_icon="🐈",
+    layout="wide",
+    initial_sidebar_state="expanded")
+
+if 'page_selection' not in st.session_state:
+    st.session_state.page_selection = 'Dataset Information'
 
 # --- Sidebar Navigation with Dropdowns ---
-st.sidebar.title("Navigation")
+st.sidebar.title("Mobile User Behavior Analysis")
 
 # Main sections as dropdowns
 section = st.sidebar.selectbox("Choose a page:", [
@@ -30,9 +36,9 @@ elif section == "Conclusion":
 
 st.sidebar.title("Group Members")
 st.sidebar.markdown("""
-- GATMAITAN, Gilbert Jan
-- PALMA, Gian Carlo
-- REYES, Jedidiah
-- VILLAFRANCA, Johan Takkis
-- VIOLENTA, Erielson Emmanuel
+1. GATMAITAN, Gilbert Jan
+2. PALMA, Gian Carlo
+3. REYES, Jedidiah
+4. VILLAFRANCA, Johan Takkis
+5. VIOLENTA, Erielson Emmanuel
 """)

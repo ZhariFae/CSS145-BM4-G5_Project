@@ -46,7 +46,7 @@ def display_prediction():
     svm_model.fit(X_train_scaled, y_train)
 
     # Streamlit input fields for user prediction
-    st.write("Input values for App Usage Time, Screen On Time, and Battery Drain to predict user engagement level.")
+    st.write("Input values for the")
     app_usage = st.number_input("App Usage Time (minutes/day)", min_value=0, max_value=1440, value=100, step=1)
     screen_time = st.number_input("Screen On Time (hours/day)", min_value=0.0, max_value=24.0, value=2.0, step=0.1)
     battery_drain = st.number_input("Battery Drain (mAh/day)", min_value=0, max_value=10000, value=500, step=50)
