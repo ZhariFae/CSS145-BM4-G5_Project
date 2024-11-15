@@ -6,12 +6,12 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from PIL import Image
 
-st.set_page_config(
-    page_title="Engagement Level Predictor",
-    page_icon="📊",
-    layout="centered",
-    initial_sidebar_state="auto",
-)
+# st.set_page_config(
+#     page_title="Engagement Level Predictor",
+#     page_icon="📊",
+#     layout="centered",
+#     initial_sidebar_state="auto",
+# )
 
 def display_prediction():
     st.header("Prediction")
