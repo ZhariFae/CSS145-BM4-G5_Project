@@ -23,7 +23,16 @@ elif section == "Exploratory Data Analysis":
     display_eda()
 elif section == "Machine Learning Implementation":
     display_ml_implementation()
-# elif section == "Prediction":
-#     display_prediction()
+elif section == "Prediction":
+    display_prediction()
 elif section == "Conclusion":
     display_conclusion()
+
+st.sidebar.title("Group Members")
+st.sidebar.write("""
+- GATMAITAN, Gilbert Jan
+- PALMA, Gian Carlo
+- REYES, Jedidiah
+- MVILLAFRANCA, Johan Takkis
+- VIOLENTA, Erielson Emmanuel
+""")
