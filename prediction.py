@@ -4,8 +4,9 @@ import pandas as pd
 from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, classification_report
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 def display_prediction():
@@ -95,19 +96,14 @@ def display_prediction():
 
     # Graph section
     with col2:
-        st.subheader("Predicted vs. Actual Test Set")
+        st.subheader("Confusion Matrix")
+        cm = confusion_matrix(y_test, y_pred)
+
+        # Plot confusion matrix using seaborn heatmap
         fig, ax = plt.subplots(figsize=(6, 4))
-        scatter = ax.scatter(y_test, y_pred, alpha=0.7,
-                             edgecolors='k', label="Data Points")
-        ax.plot([0, 2], [0, 2], color='red',
-                linestyle='--', label="Ideal Line")
-        ax.set_xticks([0, 1, 2])
-        ax.set_yticks([0, 1, 2])
-        ax.set_xticklabels(["Low", "Medium", "High"])
-        ax.set_yticklabels(["Low", "Medium", "High"])
-        ax.set_xlabel("Actual Engagement Level")
-        ax.set_ylabel("Predicted Engagement Level")
-        ax.set_title("Predicted vs. Actual Engagement Levels")
-        ax.legend()
-        ax.grid(True, linestyle='--', alpha=0.6)
+        sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=[
+                    'Low', 'Medium', 'High'], yticklabels=['Low', 'Medium', 'High'])
+        ax.set_xlabel('Predicted')
+        ax.set_ylabel('Actual')
+        ax.set_title('Confusion Matrix for Engagement Prediction')
         st.pyplot(fig)
