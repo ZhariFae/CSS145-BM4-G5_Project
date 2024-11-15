@@ -4,16 +4,6 @@ import pandas as pd
 def display_dataset_information():
     st.header("Dataset Overview")
 
-    # Group Information Section
-    st.subheader("CSS145-BM4 Group 5")
-    st.markdown("""
-    - **GATMAITAN, Gilbert Jan**
-    - **PALMA, Gian Carlo**
-    - **REYES, Jedidiah**
-    - **VILLAFRANCA, Johan Takkis**
-    - **VIOLENTA, Erielson Emmanuel**
-    """)
-
     st.subheader("Dataset Information")
     st.markdown("""
     This project uses a dataset that analyzes **mobile device usage** and **user behavior**. 

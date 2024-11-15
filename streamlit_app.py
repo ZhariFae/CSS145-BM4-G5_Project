@@ -14,7 +14,7 @@ st.sidebar.title("Navigation")
 
 # Main sections as dropdowns
 section = st.sidebar.selectbox("Choose a page:", [
-                               "Dataset Information", "Exploratory Data Analysis", "Machine Learning Implementation", "Conclusion"])
+                               "Dataset Information", "Exploratory Data Analysis", "Machine Learning Implementation", "Prediction", "Conclusion"])
 
 # Display content based on selected section
 if section == "Dataset Information":
@@ -29,10 +29,10 @@ elif section == "Conclusion":
     display_conclusion()
 
 st.sidebar.title("Group Members")
-st.sidebar.write("""
+st.sidebar.markdown("""
 - GATMAITAN, Gilbert Jan
 - PALMA, Gian Carlo
 - REYES, Jedidiah
-- MVILLAFRANCA, Johan Takkis
+- VILLAFRANCA, Johan Takkis
 - VIOLENTA, Erielson Emmanuel
 """)
