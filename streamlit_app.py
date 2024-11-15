@@ -7,7 +7,7 @@ from conclusion import display_conclusion
 from prediction import display_prediction
 
 st.set_page_config(
-    page_title="Mobile User Behavior Analysis", # Replace this with your Project's Title
+    page_title="Mobile User Behavior Analysis",
     page_icon="🐈",
     layout="wide",
     initial_sidebar_state="expanded")
