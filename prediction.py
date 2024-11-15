@@ -7,12 +7,11 @@ from sklearn.model_selection import train_test_split
 
 from PIL import Image
 
-def display_ml_implementation():
+def display_prediction():
     st.header("Prediction")
 
 df = pd.read_csv('assets/user_behavior_dataset.csv')
 
-# Ensure Engagement Level is calculated
 low_threshold_app_usage = df['App Usage Time (min/day)'].quantile(0.33)
 medium_threshold_app_usage = df['App Usage Time (min/day)'].quantile(0.66)
 
