@@ -7,22 +7,33 @@ from PIL import Image
 def display_conclusion():
     st.header("Conclusion")
 
+    st.markdown("""
+                This project provided a comprehensive exploration of mobile device usage and user behavior, focusing on identifying core usage patterns through Exploratory Data Analysis (EDA) and leveraging machine learning models for predictive and descriptive insights. Each phase of analysis yielded significant findings that deepen our understanding of user engagement, device preferences, and usage intensity.
+                """)
+
     st.subheader("Exploratory Data Analysis")
     st.markdown("""
-                `User Engagement Levels and Battery Usage`
-                - This scatter plot shows the results of a KMeans clustering analysis on user behavior based on Screen On Time, Battery Drain, and Data Usage. Each color represents a different cluster, corresponding to a specific user profile.
+                The EDA phase uncovered fundamental trends and correlations in user behavior:
+                """)
+    st.markdown("""
+                `Screen Time and Battery Drain`
+                - The analysis showed a clear correlation between screen-on time and battery drain across all user groups. High screen time reliably translates to higher battery consumption, identifying a subset of high-engagement users likely to prioritize battery efficiency in their device choices.
 
-                `Device Model and Demographic Influence`
-                - The breakdown of device models and user demographics, such as age and gender, reveals some trends but limited correlations. While device model choice is a significant factor, age and gender do not strongly impact battery usage or screen time. This observation suggests that while demographics may play a role in device selection, they have less influence on actual usage behavior.
+                `Engagement Patterns by Device and Demographic`
+                - By examining variables like device model, age, and gender, the EDA highlighted differences in engagement levels based on demographic factors. While gender and age had weaker correlations with usage patterns, the device model emerged as a significant differentiator, with certain devices associated with longer screen-on times and higher app usage.
 
-                `Clustering of User Profiles`
-                - Clustering analysis based on screen-on time and battery drain identified distinct groups of users, potentially corresponding to different usage intensities. These clusters categorize users into heavy, moderate, and light usage profiles. Heavy users show both high screen-on time and battery drain, indicating intense device use, while lighter users have more conservative usage patterns. This categorization could help in understanding user needs and tailoring device features to better suit different user profiles.
+                `Distribution Analysis and Outliers`
+                - Visualizations, including box plots and histograms, revealed outliers in variables such as app usage time, battery drain, and data usage. The presence of these outliers suggests a distinct group of power users who engage intensively with their devices, unlike the majority of users whose behavior clusters closer to the mean. This insight provides a clearer picture of the variation within user behavior.
 
-                 `Correlation Analysis`
-                - The correlation analysis further highlights the relationship between key variables, particularly battery drain and screen-on time. These two features showed a moderate positive correlation, reinforcing that higher screen usage corresponds to increased battery consumption. Other factors like age and gender showed weaker correlations, indicating that demographic variables have limited influence on battery behavior compared to screen time.
+                 `User Profiles`
+                - Through clustering analysis, we identified three distinct user profiles—Casual Users, Moderate Users, and Power Users. Each group showed distinct behavior patterns, with Power Users displaying high screen-on time and data usage, while Casual Users had minimal app usage and battery drain. This segmentation is valuable for recognizing varied user needs and engagement levels within the dataset.
                 """)
 
     st.subheader("Machine Learning Implementation")
+
+    st.markdown("""
+                Building on the EDA insights, we implemented machine learning models to classify user characteristics and predict engagement levels:
+                """)
 
     image_path = "assets/image10.png"
     try:
@@ -34,7 +45,7 @@ def display_conclusion():
 
     st.subheader("Decision Tree Classifier - Predicting Operating System")
     st.markdown("""
-                The Decision Tree Classifier was used to predict a user’s operating system based on demographics and device usage metrics:
+                The Decision Tree model was trained to predict the operating system (OS) based on user demographics and device-specific features.
 
                 `Features`
                 - The model utilized Age, Gender, Battery Drain, and Device Model as input features.
@@ -67,7 +78,7 @@ def display_conclusion():
                 - A PCA (Principal Component Analysis) visualization provided a 2D view of the engagement levels, where clusters of users with similar usage behavior emerged, validating the classification approach.
 
                 `Observation`
-                - The SVM PCA visualization of engagement levels illustrates clear clusters, differentiating users based on their engagement level (low, medium, or high). The three distinct colors represent these levels, showing that SVM was able to separate users effectively. The horizontal spread along the PCA components indicates a range of usage behaviors within each level, with high-engagement users positioned farthest to the right, followed by medium, and then low-engagement users. This supports the SVM model’s capability to distinguish engagement intensity based on app usage, screen time, and battery drain metrics..
+                - The SVM PCA visualization of engagement levels illustrates clear clusters, differentiating users based on their engagement level (low, medium, or high). The three distinct colors represent these levels, showing that SVM was able to separate users effectively. The horizontal spread along the PCA components indicates a range of usage behaviors within each level, with high-engagement users positioned farthest to the right, followed by medium, and then low-engagement users. This supports the SVM model’s capability to distinguish engagement intensity based on app usage, screen time, and battery drain metrics.
 
                 `Conclusion`
                 - SVM is successful in classifying engagement levels, where high-engagement users show significantly different patterns, suggesting opportunities for targeted app features or resource optimization..
