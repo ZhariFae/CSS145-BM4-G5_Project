@@ -13,7 +13,8 @@ st.set_page_config(page_title="Mobile Device Usage Analysis", layout="wide")
 st.sidebar.title("Navigation")
 
 # Main sections as dropdowns
-section = st.sidebar.selectbox("Choose a page:", ["Dataset Information", "Exploratory Data Analysis", "Machine Learning Implementation", "Prediction", "Conclusion"])
+section = st.sidebar.selectbox("Choose a page:", [
+                               "Dataset Information", "Exploratory Data Analysis", "Machine Learning Implementation", "Prediction", "Conclusion"])
 
 # Display content based on selected section
 if section == "Dataset Information":
@@ -24,3 +25,5 @@ elif section == "Machine Learning Implementation":
     display_ml_implementation()
 elif section == "Prediction":
     display_prediction()
+elif section == "Conclusion":
+    display_conclusion()
