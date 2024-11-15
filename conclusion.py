@@ -8,7 +8,7 @@ def display_conclusion():
     st.header("Conclusion")
 
     st.markdown("""
-                This project provided a comprehensive exploration of mobile device usage and user behavior, focusing on identifying core usage patterns through Exploratory Data Analysis (EDA) and leveraging machine learning models for predictive and descriptive insights. Each phase of analysis yielded significant findings that deepen our understanding of user engagement, device preferences, and usage intensity.
+                With a focus on using exploratory data analysis (EDA) to identify important use patterns and machine learning models to deliver descriptive and predictive insights, this project provided a comprehensive examination of user behavior and mobile device usage. Thanks to the valuable information from each analysis step, we now have a greater understanding of user engagement, device preferences, and usage intensity.
                 """)
 
     st.subheader("Exploratory Data Analysis")
